@@ -4,7 +4,24 @@ An extension for Pulsar, a Community-led Hyper-Hackable Text Editor, that is abl
 
 This extension MUST receive a sensor specification to know what to watch for, for a given tooling set.
 
-Then, it is watching the project, and notify other extensions when the sensor has been triggered.
+Then, it is watching the project, more specifically :
+
+* each root directory in the workspace, looking for the specified hint.
+* If not found in a root directory, do the same for each direct subfolder.
+* and it's not going further.
+
+In other work, either a root directory can be operated with a tooling set, or it MAY be a container for a collection of projects.
+
+Upon finding one or more "interesting folders", it send a detection event. 
+
+Also, it watches for any modifications that would change the set of interesting folders, like :
+
+* An interesting folder appear.
+* An interesting folder disappear.
+* A root folder stops being interesting, revealing a set of interesting direct subfolders.
+* A root folder starts being interesting, masking a set of interesting direct subfolders.
+
+Finally, a tooling-set can be prioritized against others (e.g. `GNU make` should be ignored for every folder where `cmake` is found suitable).
 
 ```mermaid
 ---
