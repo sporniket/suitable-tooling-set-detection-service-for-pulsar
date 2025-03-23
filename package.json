@@ -1,0 +1,18 @@
+{
+  "name": "suitable-tooling-set-detection-service-for-pulsar",
+  "main": "./lib/suitable-tooling-set-detection-service-for-pulsar",
+  "version": "0.0.0",
+  "description": "A short description of your package",
+  "keywords": [
+  ],
+  "activationCommands": {
+    "atom-workspace": "suitable-tooling-set-detection-service-for-pulsar:toggle"
+  },
+  "repository": "https://github.com/atom/suitable-tooling-set-detection-service-for-pulsar",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {
+  }
+}

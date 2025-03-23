@@ -1,0 +1,26 @@
+{
+  "context-menu": {
+    "atom-text-editor": [
+      {
+        "label": "Toggle suitable-tooling-set-detection-service-for-pulsar",
+        "command": "suitable-tooling-set-detection-service-for-pulsar:toggle"
+      }
+    ]
+  },
+  "menu": [
+    {
+      "label": "Packages",
+      "submenu": [
+        {
+          "label": "suitable-tooling-set-detection-service-for-pulsar",
+          "submenu": [
+            {
+              "label": "Toggle",
+              "command": "suitable-tooling-set-detection-service-for-pulsar:toggle"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -12,7 +12,7 @@ Then, it is watching the project, more specifically :
 
 In other work, either a root directory can be operated with a tooling set, or it MAY be a container for a collection of projects.
 
-Upon finding one or more "interesting folders", it send a detection event. 
+Upon finding one or more "interesting folders", it send a detection event.
 
 Also, it watches for any modifications that would change the set of interesting folders, like :
 
@@ -31,11 +31,11 @@ flowchart
 
     suitable-tooling-set-detection-service-for-pulsar((
         This extension
-    )) 
-    --«consumes» tooling-set-detection-requests--> 
+    ))
+    --«consumes» tooling-set-detection-requests-->
     tooling-set-expert-extension[
         The extension knowing how to assess that the project can be operated with a tooling set
-    ] 
+    ]
 
     suitable-tooling-set-detection-service-for-pulsar
     --scans and register to watch for changes on files-->
@@ -45,8 +45,8 @@ flowchart
 
     suitable-tooling-set-detection-service-for-pulsar((
         This extension
-    )) 
-    --«provides» tooling-set-detection-events--> 
+    ))
+    --«provides» tooling-set-detection-events-->
     tooling-set-integration-extensions@{shape : processes, label : "All the extensions that are interested and provide features using the matching tooling set"}
-    
+
 ```
