@@ -1,16 +1,35 @@
 {
   "name": "suitable-tooling-set-detection-service-for-pulsar-by-sporniket",
-  "main": "./lib/suitable-tooling-set-detection-service-for-pulsar",
   "version": "0.0.1",
   "description": "An extension for Pulsar, a Community-led Hyper-Hackable Text Editor, that is able to watch the projects for hints about a set of tooling that would be suitable to operate on them.",
-  "keywords": [
-  ],
-  "activationCommands": {
-    "atom-workspace": "suitable-tooling-set-detection-service-for-pulsar:toggle"
+  "main": "lib/suitable-tooling-set-detection-service-for-pulsar.js",
+  "module": "src/suitable-tooling-set-detection-service-for-pulsar.js",
+  "exports": {
+      ".": {
+          "import": "./src/suitable-tooling-set-detection-service-for-pulsar.js",
+          "require": "./lib/suitable-tooling-set-detection-service-for-pulsar.js"
+      }
+  },
+  "scripts": {
+      "_format-package-json": "prettier -w package.json",
+      "_format-src": "eslint --fix src/*.js",
+      "_format-src-tests": "eslint --fix src-tests/*.js",
+      "format": "npm run _format-package-json && npm run _format-src && npm run _format-src-tests",
+      "_build-cjs-copy-resources": "cp src-cjs/* lib",
+      "_build-cjs-transpile": "babel --plugins @babel/plugin-transform-modules-commonjs src --out-dir lib",
+      "build-cjs": "npm run _build-cjs-transpile && npm run _build-cjs-copy-resources",
+      "rebuild-cjs": "rm -f lib/* && npm run build-cjs",
+      "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --config=.jest.config.cjs",
+      "prepack": "npm run rebuild-cjs"
   },
   "repository": {
       "type": "git",
       "url": "git+https://github.com/sporniket/suitable-tooling-set-detection-service-for-pulsar.git"
+  },
+  "keywords": [
+  ],
+  "activationCommands": {
+    "atom-workspace": "suitable-tooling-set-detection-service-for-pulsar:list"
   },
   "author": "David SPORN",
   "license": "GPL-3.0-or-later",
