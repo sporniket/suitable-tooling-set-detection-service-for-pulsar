@@ -1,5 +1,5 @@
 import SuitableToolingSetDetectionServiceForPulsarView from './suitable-tooling-set-detection-service-for-pulsar-view';
-import { CompositeDisposable } from 'atom';
+import { CompositeDisposable, Disposable} from 'atom';
 
 /* SPDX-License-Identifier: GPL-3.0-or-later */
 /****************************************
@@ -54,6 +54,20 @@ export default {
                 this.modalPanel.hide() :
                 this.modalPanel.show()
         );
+    },
+
+    provideToolingSetDetectionEventService() {
+        console.log('provideToolingSetDetectionEventService -> return dummy');
+        return {
+            onToolingSetDetectionEvent:(eventHandler)=>{
+                return {}; // return something like new Disposable(eventHandler)
+            }
+        }
+    },
+
+    consumeToolingSetDetectionRequestService(service) {
+        console.log('useService(service)');
+        return new Disposable(() => console.log('stopUsingService(service)'));
     }
 
 };

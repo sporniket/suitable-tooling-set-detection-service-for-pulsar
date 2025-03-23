@@ -30,6 +30,21 @@
     "activationCommands": {
         "atom-workspace": "suitable-tooling-set-detection-service-for-pulsar:list"
     },
+    "providedServices": {
+		"tooling-set-detection-events": {
+            "description": "Notify when some root folders changes with regards to a given tooling set",
+			"versions": {
+                "0.0.1": "provideToolingSetDetectionEventService"
+			}
+		}
+    },
+    "consumedServices": {
+		"tooling-set-detection-requests": {
+			"versions": {
+                "0.0.1": "consumeToolingSetDetectionRequestService"
+			}
+		}
+    },
     "author": "David SPORN",
     "license": "GPL-3.0-or-later",
     "bugs": {
