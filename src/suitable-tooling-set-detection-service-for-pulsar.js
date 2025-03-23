@@ -1,6 +1,18 @@
 import SuitableToolingSetDetectionServiceForPulsarView from './suitable-tooling-set-detection-service-for-pulsar-view';
 import { CompositeDisposable } from 'atom';
 
+/* SPDX-License-Identifier: GPL-3.0-or-later */
+/****************************************
+
+---
+Copyright (C) 2025 David SPORN
+---
+This is part of **suitable-tooling-set-detection-service-for-pulsar-by-sporniket**.
+An extension for Pulsar, a Community-led Hyper-Hackable Text Editor, that is able
+to watch the projects for hints about a set of tooling that would be suitable to
+operate on them.
+****************************************/
+
 export default {
 
   suitableToolingSetDetectionServiceForPulsarView: null,

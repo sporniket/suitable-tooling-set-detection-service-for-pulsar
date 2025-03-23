@@ -1,3 +1,6 @@
+# Specifics
+lib/*
+
 # Logs
 logs
 *.log
