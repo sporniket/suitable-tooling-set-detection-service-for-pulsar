@@ -14,10 +14,10 @@ operate on them.
 
 export class SuitableToolingSetDetectionController {
     #pulsar;
-    #Disposable;
-    constructor({pulsar, Disposable}) {
+    #Emitter;
+    constructor({pulsar, Emitter}) {
         this.#pulsar = pulsar;
-        this.#Disposable = Disposable;
+        this.#Emitter = Emitter;
     }
 
     // === pulsar extension interface ===
@@ -40,18 +40,33 @@ export class SuitableToolingSetDetectionController {
         console.log('provideToolingSetDetectionEventService -> return dummy');
         return {
             onToolingSetDetectionEvent: (eventHandler)=>{
-                return {}; // return something like new Disposable(eventHandler)
+                return {}; // return something like Emitter::on(eventHandler)
             }
         };
     }
 
     consumeToolingSetDetectionRequestService(service) {
         console.log(`useService(service) with ${JSON.stringify(service, null, 4)}`);
-        return new this.#Disposable(() => console.log('stopUsingService(service)'));
+        //return new this.#Emitter(() => console.log('stopUsingService(service)'));
     }
 
     // === commands ===
     list() {
         console.log('list');
+    }
+
+    // === services to be returned by provideToolingSetDetectionEventService() ===
+    registerToolingSetDetectionSensor({
+        tooling,
+        type,
+        filename,
+        preempt,
+        behavior
+    }) {
+        //do something about it
+    }
+
+    dropToolingSetDetectionSensor(tooling) {
+        //do something about it
     }
 }
