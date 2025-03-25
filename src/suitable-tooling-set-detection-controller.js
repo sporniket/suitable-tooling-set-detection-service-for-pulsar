@@ -38,9 +38,25 @@ export class SuitableToolingSetDetectionController {
 
     provideToolingSetDetectionEventService() {
         console.log('provideToolingSetDetectionEventService -> return dummy');
+        const self = this;
         return {
-            onToolingSetDetectionEvent: (eventHandler)=>{
-                return {}; // return something like Emitter::on(eventHandler)
+            registerToolingSetDetectionSensor: ({
+                tooling,
+                type,
+                filename,
+                preempt,
+                behavior
+            }) => {
+                self.registerToolingSetDetectionSensor({
+                    tooling,
+                    type,
+                    filename,
+                    preempt,
+                    behavior
+                });
+            },
+            dropToolingSetDetectionSensor: (tooling) => {
+                self.dropToolingSetDetectionSensor(tooling);
             }
         };
     }
