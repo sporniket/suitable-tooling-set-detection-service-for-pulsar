@@ -59,10 +59,10 @@ export default {
     provideToolingSetDetectionEventService() {
         console.log('provideToolingSetDetectionEventService -> return dummy');
         return {
-            onToolingSetDetectionEvent:(eventHandler)=>{
+            onToolingSetDetectionEvent: (eventHandler)=>{
                 return {}; // return something like new Disposable(eventHandler)
             }
-        }
+        };
     },
 
     consumeToolingSetDetectionRequestService(service) {
