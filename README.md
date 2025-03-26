@@ -32,7 +32,7 @@ flowchart
     suitable-tooling-set-detection-service-for-pulsar((
         This extension
     ))
-    --«consumes» tooling-set-detection-requests-->
+    --«consumes» tooling-set-detection-definition-->
     tooling-set-expert-extension[
         The extension knowing how to assess that the project can be operated with a tooling set
     ]

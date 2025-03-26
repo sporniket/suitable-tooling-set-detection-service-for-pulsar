@@ -61,7 +61,7 @@ export class SuitableToolingSetDetectionController {
         };
     }
 
-    consumeToolingSetDetectionRequestService(service) {
+    consumeToolingSetDetectionDefinitionService(service) {
         console.log(`useService(service) with ${JSON.stringify(service, null, 4)}`);
         //return new this.#Emitter(() => console.log('stopUsingService(service)'));
     }

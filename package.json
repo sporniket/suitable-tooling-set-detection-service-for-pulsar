@@ -39,9 +39,9 @@
         }
     },
     "consumedServices": {
-        "tooling-set-detection-requests": {
+        "tooling-set-detection-definition": {
             "versions": {
-                "0.0.1": "consumeToolingSetDetectionRequestService"
+                "0.0.1": "consumeToolingSetDetectionDefinitionService"
             }
         }
     },

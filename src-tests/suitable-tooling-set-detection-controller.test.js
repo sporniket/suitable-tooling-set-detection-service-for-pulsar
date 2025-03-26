@@ -40,56 +40,6 @@ const pulsarThings = {
     Disposable
 };
 
-class DummyPlugin {
-    #pulsar;
-    #Emitter;
-    #Disposable;
-    #subscription;
-    constructor({pulsarType, EmitterType, DisposableType}) {
-        this.#pulsar = pulsarType;
-        this.#Emitter = EmitterType;
-        this.#Disposable = DisposableType;
-        this.#subscription = null;
-    }
-
-    // === pulsar extension interface ===
-    activate(state) {
-        console.log(`activate using ${JSON.stringify(state, null, 4)}`);
-    }
-
-    deactivate() {
-        console.log('deactivate');
-        if (this.#subscription) {
-            this.#subscription.dispose();
-        }
-    }
-
-    serialize() {
-        console.log('serialize');
-        return {};
-    }
-
-    // === services clause implementation ===
-    provideToolingSetDetectionRequestService(service) {
-        console.log(`useService(service) with ${JSON.stringify(service, null, 4)}`);
-        const self = this;
-        return {
-            defineAndActivateSensorInto: (sensorManager) => {
-                sensorManager.registerToolingSetDetectionSensor({
-                    tooling: 'cmake',
-                    type: 'by-filename-in-top-directory',
-                    filename: 'whatever',
-                    preempt: ['gnu-make', 'make'],
-                    behavior: 'exclude-subfolders-without-filename' || 'exclude-any-subfolders'
-                });
-                self.#subscription = new Disposable(()=>sensorManager.dropToolingSetDetectionSensor('cmake'));
-            }
-        };
-    }
-
-}
-
-
 test('SuitableToolingSetDetectionController has methods expected by pulsar', () => {
     const controller = new SuitableToolingSetDetectionController(pulsarThings);
 
@@ -100,7 +50,7 @@ test('SuitableToolingSetDetectionController has methods expected by pulsar', () 
 
     // expected methods as a provider and consumer of services
     expect(controller.provideToolingSetDetectionEventService).toBeDefined();
-    expect(controller.consumeToolingSetDetectionRequestService).toBeDefined();
+    expect(controller.consumeToolingSetDetectionDefinitionService).toBeDefined();
 
     // expected methods as defined commands
     expect(controller.list).toBeDefined();
