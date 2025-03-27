@@ -50,7 +50,7 @@ module.exports = {
         "no-undef-init": "error",
         "no-underscore-dangle": "off",
         "no-unused-expressions": "error",
-        "no-unused-vars": "warn",
+        "no-unused-vars": ["warn", { "args": "none"}],
         "no-use-before-define": "error",
         "no-with": "error",
         "camelcase": "error",
