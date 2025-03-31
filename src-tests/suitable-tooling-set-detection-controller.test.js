@@ -89,5 +89,19 @@ describe('SuitableToolingSetDetectionController.consumeToolingSetDetectionDefini
 
         expect(MockedGetSensorDefinitions).toHaveBeenCalledTimes(1);
 
+        const addNode = jest.fn();
+        const addDependencyGraph = jest.fn();
+        controller.acceptView({
+            addNode,
+            addDependencyGraph
+        });
+        expect(addNode).toHaveBeenCalledWith({
+            tooling: 'foo',
+            type: 'DetectionStrategy.BY_FILENAME_IN_FOLDER',
+            filename: 'CFOO.bar',
+            preempt: ['bar', 'baz'],
+            behavior: 'SubfoldersPolicy.PRESENT_ANY_UNDETECTED_SUBFOLDER_TO_PREEMPTED_TOOLING_SETS'
+        });
+
     });
 });

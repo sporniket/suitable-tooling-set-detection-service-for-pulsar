@@ -16,7 +16,8 @@ operate on them.
 ****************************************/
 
 export const MockedGetSensorDefinitions = jest.fn(() => {
-    return [
+
+    const result = [
         {
             tooling: 'foo',
             type: DetectionStrategy.BY_FILENAME_IN_FOLDER,
@@ -25,6 +26,11 @@ export const MockedGetSensorDefinitions = jest.fn(() => {
             behavior: SubfoldersPolicy.PRESENT_ANY_UNDETECTED_SUBFOLDER_TO_PREEMPTED_TOOLING_SETS
         }
     ];
+
+    console.log(result[0].type.toString());
+    console.log(result[0].behavior.toString());
+
+    return result;
 });
 
 export class MockPluginProvidingToolingSetDetectionDefinitionService {

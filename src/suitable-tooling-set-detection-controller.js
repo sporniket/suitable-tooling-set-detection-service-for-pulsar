@@ -15,9 +15,11 @@ operate on them.
 export class SuitableToolingSetDetectionController {
     #pulsar;
     #Emitter;
+    #sensors;
     constructor({pulsar, Emitter}) {
         this.#pulsar = pulsar;
         this.#Emitter = Emitter;
+        this.#sensors = new Map();
     }
 
     // === pulsar extension interface ===
@@ -65,6 +67,14 @@ export class SuitableToolingSetDetectionController {
     consumeToolingSetDetectionDefinitionService(service) {
         console.log(`useService(service) with ${JSON.stringify(service, null, 4)}`);
         const defs = service.getSensorDefinitions();
+        defs.forEach((def, i) => {
+            console.log(JSON.stringify(def));
+            console.log(def.type.toString());
+            console.log(def.behavior.toString());
+            this.#sensors.set(def.tooling, def);
+            console.log(this.#sensors.size);
+        });
+
         console.log(`service.getSensorDefinitions() returned ${JSON.stringify(defs, null, 4)}`);
     }
 
@@ -86,5 +96,34 @@ export class SuitableToolingSetDetectionController {
 
     dropToolingSetDetectionSensor(tooling) {
         //do something about it
+    }
+
+    // === update given view ===
+    acceptView({
+        addNode,
+        addDependencyGraph
+    }) {
+        console.log(this.#sensors);
+        console.log(this.#sensors.size);
+        console.log(this.#sensors.keys());
+        console.log(this.#sensors.values());
+        this.#sensors.forEach(({
+            tooling,
+            type,
+            filename,
+            preempt,
+            behavior
+        }, key, map)=>{
+            console.log('this.#sensors.forEach -- item');
+            console.log(key);
+            addNode({
+                tooling,
+                type: type.toString(),
+                filename,
+                preempt,
+                behavior: behavior.toString()
+            });
+        });
+
     }
 }
