@@ -17,10 +17,10 @@ operate on them.
 ****************************************/
 
 test('SubfoldersPolicy has two enum values', () => {
-    expect(String(SubfoldersPolicy.HIDE_ALL_SUBFOLDERS_TO_PREEMPTED_TOOLING_SETS)).toBe('Symbol(0)');
-    expect(String(SubfoldersPolicy.PRESENT_ANY_UNDETECTED_SUBFOLDER_TO_PREEMPTED_TOOLING_SETS)).toBe('Symbol(1)');
+    expect(SubfoldersPolicy.HIDE_ALL_SUBFOLDERS_TO_PREEMPTED_TOOLING_SETS.toString()).toBe('SubfoldersPolicy.HIDE_ALL_SUBFOLDERS_TO_PREEMPTED_TOOLING_SETS');
+    expect(SubfoldersPolicy.PRESENT_ANY_UNDETECTED_SUBFOLDER_TO_PREEMPTED_TOOLING_SETS.toString()).toBe('SubfoldersPolicy.PRESENT_ANY_UNDETECTED_SUBFOLDER_TO_PREEMPTED_TOOLING_SETS');
 });
 
 test('DetectionStrategy has one enum value', () => {
-    expect(String(DetectionStrategy.BY_FILENAME_IN_FOLDER)).toBe('Symbol(0)');
+    expect(DetectionStrategy.BY_FILENAME_IN_FOLDER.toString()).toBe('DetectionStrategy.BY_FILENAME_IN_FOLDER');
 });

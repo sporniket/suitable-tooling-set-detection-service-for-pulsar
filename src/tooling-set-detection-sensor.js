@@ -12,18 +12,15 @@ to watch the projects for hints about a set of tooling that would be suitable to
 operate on them.
 ****************************************/
 
-const HIDE_ALL_SUBFOLDERS_TO_PREEMPTED_TOOLING_SETS = Symbol(0);
-const PRESENT_ANY_UNDETECTED_SUBFOLDER_TO_PREEMPTED_TOOLING_SETS = Symbol(1);
+const makeEnumValue = (name) => Object.freeze({toString: () => name});
 
 export const SubfoldersPolicy = Object.freeze({
-    HIDE_ALL_SUBFOLDERS_TO_PREEMPTED_TOOLING_SETS,
-    PRESENT_ANY_UNDETECTED_SUBFOLDER_TO_PREEMPTED_TOOLING_SETS
+    HIDE_ALL_SUBFOLDERS_TO_PREEMPTED_TOOLING_SETS: makeEnumValue('SubfoldersPolicy.HIDE_ALL_SUBFOLDERS_TO_PREEMPTED_TOOLING_SETS'),
+    PRESENT_ANY_UNDETECTED_SUBFOLDER_TO_PREEMPTED_TOOLING_SETS: makeEnumValue('SubfoldersPolicy.PRESENT_ANY_UNDETECTED_SUBFOLDER_TO_PREEMPTED_TOOLING_SETS')
 });
 
-const BY_FILENAME_IN_FOLDER = Symbol(0);
-
 export const DetectionStrategy = Object.freeze({
-    BY_FILENAME_IN_FOLDER
+    BY_FILENAME_IN_FOLDER: makeEnumValue('DetectionStrategy.BY_FILENAME_IN_FOLDER')
 });
 
 export class ToolingSetDetectionSensor {
