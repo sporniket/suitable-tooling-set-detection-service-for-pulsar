@@ -1,6 +1,7 @@
 'use strict';
 
 import {jest} from '@jest/globals';
+import {DetectionStrategy, SubfoldersPolicy} from '../src/tooling-set-detection-sensor.js';
 
 /* SPDX-License-Identifier: GPL-3.0-or-later */
 /****************************************
@@ -14,7 +15,19 @@ to watch the projects for hints about a set of tooling that would be suitable to
 operate on them.
 ****************************************/
 
-class MockPluginProvidingToolingSetDetectionDefinitionService {
+export const MockedGetSensorDefinitions = jest.fn(() => {
+    return [
+        {
+            tooling: 'foo',
+            type: DetectionStrategy.BY_FILENAME_IN_FOLDER,
+            filename: 'CFOO.bar',
+            preempt: ['bar', 'baz'],
+            behavior: SubfoldersPolicy.PRESENT_ANY_UNDETECTED_SUBFOLDER_TO_PREEMPTED_TOOLING_SETS
+        }
+    ];
+});
+
+export class MockPluginProvidingToolingSetDetectionDefinitionService {
     #pulsar;
     #Emitter;
     #Disposable;
@@ -48,16 +61,7 @@ class MockPluginProvidingToolingSetDetectionDefinitionService {
         console.log('provideToolingSetDetectionDefinitionService()');
         const self = this;
         return {
-            defineAndActivateSensorInto: (sensorManager) => {
-                sensorManager.registerToolingSetDetectionSensor({
-                    tooling: 'foo',
-                    type: 'by-filename-in-top-directory',
-                    filename: 'CFOO.bar',
-                    preempt: ['bar', 'baz'],
-                    behavior: 'exclude-subfolders-without-filename' || 'exclude-any-subfolders'
-                });
-                self.#subscription = new this.#Disposable(()=>sensorManager.dropToolingSetDetectionSensor('cmake'));
-            }
+            getSensorDefinitions: MockedGetSensorDefinitions
         };
     }
 

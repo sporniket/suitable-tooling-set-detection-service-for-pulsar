@@ -13,11 +13,11 @@ operate on them.
 ****************************************/
 
 const HIDE_ALL_SUBFOLDERS_TO_PREEMPTED_TOOLING_SETS = Symbol(0);
-const PRESENT_ANY_UNDETECTED_FOLDER_TO_PREEMPTED_TOOLING_SETS = Symbol(1);
+const PRESENT_ANY_UNDETECTED_SUBFOLDER_TO_PREEMPTED_TOOLING_SETS = Symbol(1);
 
 export const SubfoldersPolicy = Object.freeze({
     HIDE_ALL_SUBFOLDERS_TO_PREEMPTED_TOOLING_SETS,
-    PRESENT_ANY_UNDETECTED_FOLDER_TO_PREEMPTED_TOOLING_SETS
+    PRESENT_ANY_UNDETECTED_SUBFOLDER_TO_PREEMPTED_TOOLING_SETS
 });
 
 const BY_FILENAME_IN_FOLDER = Symbol(0);
@@ -29,7 +29,7 @@ export const DetectionStrategy = Object.freeze({
 export class ToolingSetDetectionSensor {
     constructor({
         detectionStrategy = DetectionStrategy.BY_FILENAME_IN_FOLDER,
-        subfolderPolicy = SubfoldersPolicy.PRESENT_ANY_UNDETECTED_FOLDER_TO_PREEMPTED_TOOLING_SETS,
+        subfolderPolicy = SubfoldersPolicy.PRESENT_ANY_UNDETECTED_SUBFOLDER_TO_PREEMPTED_TOOLING_SETS,
         toolingSetName,
         preemptedToolingSetNames = [],
         filename

@@ -18,7 +18,7 @@ operate on them.
 
 test('SubfoldersPolicy has two enum values', () => {
     expect(String(SubfoldersPolicy.HIDE_ALL_SUBFOLDERS_TO_PREEMPTED_TOOLING_SETS)).toBe('Symbol(0)');
-    expect(String(SubfoldersPolicy.PRESENT_ANY_UNDETECTED_FOLDER_TO_PREEMPTED_TOOLING_SETS)).toBe('Symbol(1)');
+    expect(String(SubfoldersPolicy.PRESENT_ANY_UNDETECTED_SUBFOLDER_TO_PREEMPTED_TOOLING_SETS)).toBe('Symbol(1)');
 });
 
 test('DetectionStrategy has one enum value', () => {

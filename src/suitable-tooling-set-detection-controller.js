@@ -23,6 +23,7 @@ export class SuitableToolingSetDetectionController {
     // === pulsar extension interface ===
     activate(state) {
         console.log(`activate using ${JSON.stringify(state, null, 4)}`);
+        this.#pulsar.project.onDidChangeFiles((event)=>{console.log(`onDidChangFiles with event ${JSON.stringify(event, null, 4)}`);});
     }
 
     deactivate() {
@@ -63,7 +64,8 @@ export class SuitableToolingSetDetectionController {
 
     consumeToolingSetDetectionDefinitionService(service) {
         console.log(`useService(service) with ${JSON.stringify(service, null, 4)}`);
-        //return new this.#Emitter(() => console.log('stopUsingService(service)'));
+        const defs = service.getSensorDefinitions();
+        console.log(`service.getSensorDefinitions() returned ${JSON.stringify(defs, null, 4)}`);
     }
 
     // === commands ===

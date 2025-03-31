@@ -3,6 +3,7 @@
 import {jest} from '@jest/globals';
 
 import {SuitableToolingSetDetectionController} from '../src/suitable-tooling-set-detection-controller';
+import {MockedGetSensorDefinitions, MockPluginProvidingToolingSetDetectionDefinitionService} from './mock-plugin-providing-tooling-set-detection-definition.js';
 
 /* SPDX-License-Identifier: GPL-3.0-or-later */
 /****************************************
@@ -17,7 +18,11 @@ operate on them.
 ****************************************/
 
 //=== mocking pulsar stuff ===
-const pulsar = {};
+const pulsar = {
+    project: {
+        onDidChangeFiles: jest.fn()
+    }
+};
 
 class Emitter {
     constructor() {}
@@ -65,3 +70,24 @@ test('SuitableToolingSetDetectionController has methods expected by pulsar', () 
 //
 //     expect(controller.consumeToolingSetDetectionRequestService({}).dispose).toBeDefined();
 // });
+describe('SuitableToolingSetDetectionController.activate(...)', () => {
+    test('calls pulsar.project.onDidChangeFiles', () => {
+        const controller = new SuitableToolingSetDetectionController(pulsarThings);
+        controller.activate({});
+
+        expect(pulsarThings.pulsar.project.onDidChangeFiles).toHaveBeenCalledTimes(1);
+    });
+
+});
+
+describe('SuitableToolingSetDetectionController.consumeToolingSetDetectionDefinitionService(...)', () => {
+    test('calls `getSensorDefinitions()` of the given service', ()=>{
+        const controller = new SuitableToolingSetDetectionController(pulsarThings);
+        const mockPlugin = new MockPluginProvidingToolingSetDetectionDefinitionService(pulsarThings);
+
+        controller.consumeToolingSetDetectionDefinitionService(mockPlugin.provideToolingSetDetectionDefinitionService());
+
+        expect(MockedGetSensorDefinitions).toHaveBeenCalledTimes(1);
+
+    });
+});
